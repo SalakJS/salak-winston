@@ -1,4 +1,4 @@
-const winston = require('./')
+const winston = require('..')
 const { combine, timestamp, label } = winston.format
 
 const logger = winston.createLogger({
