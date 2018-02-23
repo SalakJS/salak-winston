@@ -4,7 +4,6 @@ const fileStreamRotator = require('file-stream-rotator')
 const path = require('path')
 const fs = require('fs')
 const util = require('util')
-const { LEVEL, MESSAGE } = require('triple-beam')
 
 class DailyFile extends Transport {
   constructor (options = {}) {
@@ -66,9 +65,7 @@ class DailyFile extends Transport {
   }
 
   log (info, callback) {
-    delete info[LEVEL]
-    delete info[MESSAGE]
-    this.logStream.write(util.format(info) + this.eol)
+    this.logStream.write(util.inspect(info) + this.eol)
     if (callback) {
       callback(null, true)
     }
