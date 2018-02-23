@@ -1,6 +1,6 @@
 {
   "name": "salak-winston",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "winston3.0 for salak",
   "main": "index.js",
   "repository": "SalakJS/salak-winston",
