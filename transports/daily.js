@@ -23,10 +23,6 @@ class DailyFile extends Transport {
       max_logs: options.maxFiles
     })
 
-    this.logStream.on('close', () => {
-      this.emit('close')
-    })
-
     this.logStream.on('finish', () => {
       this.emit('finish')
     })
