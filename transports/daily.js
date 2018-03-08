@@ -3,7 +3,6 @@ const Transport = require('winston-transport')
 const fileStreamRotator = require('file-stream-rotator')
 const path = require('path')
 const fs = require('fs')
-const util = require('util')
 
 class DailyFile extends Transport {
   constructor (options = {}) {
@@ -61,7 +60,12 @@ class DailyFile extends Transport {
   }
 
   log (info, callback) {
-    this.logStream.write(util.inspect(info) + this.eol)
+    if (info instanceof Error) {
+      this.logStream.write(JSON.stringify(info, Object.getOwnPropertyNames(info)) + this.eol)
+    } else {
+      this.logStream.write(JSON.stringify(info) + this.eol)
+    }
+
     if (callback) {
       callback(null, true)
     }
