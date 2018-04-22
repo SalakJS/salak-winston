@@ -1,6 +1,6 @@
 const os = require('os')
 const Transport = require('winston-transport')
-const fileStreamRotator = require('file-stream-rotator')
+const fileStreamRotator = require('salak-file-stream-rotator')
 const path = require('path')
 const fs = require('fs')
 
@@ -15,26 +15,24 @@ class DailyFile extends Transport {
 
     this.logStream = fileStreamRotator.getStream({
       filename: path.join(this.dirname, this.filename),
-      frequency: 'custom',
       date_format: options.datePattern ? options.datePattern : 'YYYY-MM-DD',
-      verbose: false,
       size: this._getMaxSize(options.maxSize),
       max_logs: options.maxFiles
     })
 
-    this.logStream.on('finish', () => {
+    this.logStream.stream.on('finish', () => {
       this.emit('finish')
     })
 
-    this.logStream.on('error', (err) => {
+    this.logStream.stream.on('error', (err) => {
       this.emit('error', err)
     })
 
-    this.logStream.on('open', (fd) => {
+    this.logStream.stream.on('open', (fd) => {
       this.emit('open', fd)
     })
 
-    this.logStream.on('rotate', (oldFile, newFile) => {
+    this.logStream.stream.on('rotate', (oldFile, newFile) => {
       this.emit('rotate', oldFile, newFile)
     })
   }

@@ -11,7 +11,7 @@ const logger = winston.createLogger({
     new winston.transports.DailyFile({
       filename: 'logger.log',
       dirname: '/tmp',
-      dataPattern: 'YYYY-MM-DD'
+      datePattern: 'YYYY-MM-DD'
     })
   ]
 })
