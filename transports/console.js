@@ -65,7 +65,7 @@ class SalakConsole extends Transport {
     let msg = colors[level](`[${dateFormat(timestamp)}] [${level.toUpperCase()}] ${label}/${process.pid} `) + '- '
 
     if (info instanceof Error) {
-      msg += JSON.stringify(info, Object.getOwnPropertyNames(info))
+      msg += util.inspect(info)
     } else {
       if (typeof info.message === 'object') {
         msg += util.inspect(info.message)
