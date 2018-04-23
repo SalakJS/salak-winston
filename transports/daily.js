@@ -53,7 +53,7 @@ class DailyFile extends Transport {
 
   close () {
     if (this.logStream) {
-      this.logStream.end()
+      this.logStream.stream.end()
     }
   }
 
