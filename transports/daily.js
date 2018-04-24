@@ -20,19 +20,19 @@ class DailyFile extends Transport {
       max_logs: options.maxFiles
     })
 
-    this.logStream.stream.on('finish', () => {
+    this.logStream.on('finish', () => {
       this.emit('finish')
     })
 
-    this.logStream.stream.on('error', (err) => {
+    this.logStream.on('error', (err) => {
       this.emit('error', err)
     })
 
-    this.logStream.stream.on('open', (fd) => {
+    this.logStream.on('open', (fd) => {
       this.emit('open', fd)
     })
 
-    this.logStream.stream.on('rotate', (oldFile, newFile) => {
+    this.logStream.on('rotate', (oldFile, newFile) => {
       this.emit('rotate', oldFile, newFile)
     })
   }
@@ -53,7 +53,7 @@ class DailyFile extends Transport {
 
   close () {
     if (this.logStream) {
-      this.logStream.stream.end()
+      this.logStream.end()
     }
   }
 

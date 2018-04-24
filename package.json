@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
-    "salak-file-stream-rotator": "0.0.2",
+    "salak-file-stream-rotator": "0.0.3",
     "triple-beam": "^1.1.0",
     "winston": "^3.0.0-rc1",
     "winston-transport": "^3.0.1"
