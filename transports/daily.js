@@ -1,6 +1,6 @@
 const os = require('os')
 const Transport = require('winston-transport')
-const fileStreamRotator = require('salak-file-stream-rotator')
+const fileStreamRotator = require('file-stream-rotator')
 const path = require('path')
 const fs = require('fs')
 
@@ -15,7 +15,9 @@ class DailyFile extends Transport {
 
     this.logStream = fileStreamRotator.getStream({
       filename: path.join(this.dirname, this.filename),
+      frequency: 'custom',
       date_format: options.datePattern ? options.datePattern : 'YYYY-MM-DD',
+      verbose: false,
       size: this._getMaxSize(options.maxSize),
       max_logs: options.maxFiles
     })
